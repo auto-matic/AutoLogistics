@@ -338,3 +338,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+/DB Browser for SQLite
+/sqlite-tools-win32-x86-3330000

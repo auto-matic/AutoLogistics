@@ -1,7 +1,7 @@
 import cv2
 
 
-def get_qr_code():
+def get():
     cap = cv2.VideoCapture(0)
     detector = cv2.QRCodeDetector()
 
