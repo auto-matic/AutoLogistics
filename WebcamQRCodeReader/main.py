@@ -13,6 +13,7 @@ def main():
         except:
             continue
         if msg == "GET":
+            print()
             qr_decoded = None
             try:
                 qr_decoded = qr.get()
