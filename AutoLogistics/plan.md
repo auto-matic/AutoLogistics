@@ -5,6 +5,12 @@
 	3. Client scans qrcode
 	4. Client sends decoded data back to Server
 
+	- Requests:
+		- "GET" starts the QR-Code Reader, tries to read the shown QR-Code and responds with the appropriat response
+		- "CLOSE" closes the client
+	- Responses:
+		- "SUCCESS {read data of the QR-Code}"
+		- "ERROR" 
 - Datastructure for database:
 	- Item
 		- ID
