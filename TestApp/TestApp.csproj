@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutoLogistics\AutoLogistics.csproj" />
-    <ProjectReference Include="..\Automatic\Automatic.csproj" />
   </ItemGroup>
 
 </Project>

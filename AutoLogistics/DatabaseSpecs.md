@@ -1,4 +1,4 @@
-# Database Specifications
+# Database
 ## Structure
 ### Items
 - Id

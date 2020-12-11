@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoLogistics", "AutoLogistics\AutoLogistics.csproj", "{8E7B0356-493A-4794-A060-5F4D9354039E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLogistics", "AutoLogistics\AutoLogistics.csproj", "{8E7B0356-493A-4794-A060-5F4D9354039E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{0167E3FE-9D38-490E-863B-553326F9D41E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automatic", "Automatic\Automatic.csproj", "{AE386321-396B-4804-A7D7-8A089B906EE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{0167E3FE-9D38-490E-863B-553326F9D41E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{0167E3FE-9D38-490E-863B-553326F9D41E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0167E3FE-9D38-490E-863B-553326F9D41E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0167E3FE-9D38-490E-863B-553326F9D41E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE386321-396B-4804-A7D7-8A089B906EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE386321-396B-4804-A7D7-8A089B906EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE386321-396B-4804-A7D7-8A089B906EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE386321-396B-4804-A7D7-8A089B906EE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
