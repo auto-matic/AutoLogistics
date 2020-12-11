@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoLogistics;
 
 namespace TestApp
 {
@@ -6,7 +7,11 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            var coms = new Communication();
+            coms.Connect();
+            coms.Connect();
+            Console.Read();
         }
     }
 }

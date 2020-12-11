@@ -23,3 +23,4 @@ The '\ue001' character is used to separate the individual fields. The reason for
 ``` c#
 System.Text.RegularExpressions.Regex.Unescape(@"\ue001");
 ```
+Though this is unnecessary as the escape works fine in C#
