@@ -20,7 +20,7 @@ def main():
             try:
                 print("Trying to get message")
                 try:
-                    msg = client.recv(1024).decode("utf-8")
+                    msg = client.recv(1024).decode("utf-16")
                 except ConnectionResetError:
                     print("Connection lost")
                     msg = None
@@ -38,10 +38,11 @@ def main():
                     qr_decoded = qr.get()
                 except:
                     qr_decoded = "ERROR"
+                    print("An error ocurred trying to decode a QR Code")
                 finally:
-                    client.send(qr_decoded.encode("utf-8"))
-            elif msg == "EXIT":
-                print("Received EXIT request")
+                    client.send(qr_decoded.encode("utf-16"))
+            elif msg == "TERMINATE":
+                print("Received TERMINATE request")
                 sys.exit()
             elif msg == "DISCONNECT":
                 print("Received DISCONNECT request")
@@ -49,7 +50,7 @@ def main():
                 break
             else:
                 print("Unknown request")
-                client.send("ERROR".encode("utf-8"))
+                client.send("INVALID Id\ue001Name\ue001Category_id\ue001Tags\ue001Place_id\ue001Description\ue001Owner_id\ue001Amount\ue001Unit\ue001Addition\ue001Possession".encode("utf-16"))
 
 
 if __name__ == '__main__':

@@ -8,11 +8,12 @@
 ## Requests and Responses
 - Requests:
 	- "GET" starts the QR-Code Reader, tries to read the shown QR-Code and responds with the appropriate response
-	- "EXIT" closes the server
+	- "TERMINATE" terminates the server
 	- "DISCONNECT" signals the client disconnecting from the server
 - Responses:
 	- "SUCCESS {read data of the QR-Code}"
-	- "ERROR"
+	- "ERROR" an error ocurred while processing the request
+	- "INVALID" the given request is invalid
 
 ## Format for SUCCESS responses
 The format is checked on the client side. The server just passes the raw data through.
