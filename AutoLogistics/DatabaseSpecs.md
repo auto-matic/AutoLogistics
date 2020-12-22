@@ -1,78 +1,35 @@
 # Database Specifications
 ## Structure
 ### Items
-- Id
-- Name
-- Category_id
-- Tags
-- Place_id
-- Description
-- Owner_id
-- Amount
-- Unit
-- Addition
-- Possession
+- item_id
+- name
+- category_id
+- place_id
+- description
+- owner_id
+- amount
+- unit
+- addition
+- possession
 
 ### Places
-- Id
-- Name
-- Description
-- Owner_id
-- Addition
-- Possession
+- place_id
+- name
+- description
+- owner_id
+- addition
+- possession
 
 ### Owners
-- Id
-- Name
-- Addition
-- Possession
+- owner_id
+- name
+- addition
+- possession
 
 ### Category
-- Id
-- Name
-- Addition
+- category_id
+- name
+- addition
 
-``` sql
-CREATE TABLE owners (
-    owner_id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    addition DATETIME2 NOT NULL,
-    possesion DATETIME2 NOT NULL
-);
 
-CREATE TABLE places (
-    place_id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    description TEXT NOT NULL,
-    FOREIGN KEY (owner_id) 
-      REFERENCES owners (owner_id) 
-         ON DELETE CASCADE 
-         ON UPDATE NO ACTION,
-    addition DATETIME2 NOT NULL,
-    possesion DATETIME2 NOT NULL
-)
-
-CREATE TABLE items (
-    item_id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    FOREIGN KEY (category_id) 
-      REFERENCES categories (category_id) 
-         ON DELETE CASCADE 
-         ON UPDATE NO ACTION,
-    description TEXT NOT NULL,
-    FOREIGN KEY (owner_id) 
-      REFERENCES owners (owner_id) 
-         ON DELETE CASCADE 
-         ON UPDATE NO ACTION,
-    amount INTEGER NOT NULL,
-    unit Text,
-    addition DATETIME2 NOT NULL,
-    possesion DATETIME2 NOT NULL
-)
-
-CREATE TABLE categories (
-    category_id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    addition DATETIME2 NOT NULL
-)
-```
+Setup for Database from: https://www.youtube.com/watch?v=ayp3tHEkRc0
