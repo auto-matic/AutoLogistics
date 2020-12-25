@@ -1,5 +1,6 @@
 ﻿using AutoLogistics.Models;
 using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
@@ -10,29 +11,54 @@ namespace AutoLogistics
     public class Data
     {
         #region Loading
+
         private static string LoadConnectionString(string id = "Default")
         {
             return System.Configuration.ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
 
-        public static List<ItemModel> LoadItems()
+        public static ModelList LoadItems()
         {
-            return LoadTable<ItemModel>("items");
+            var loaded = LoadTable<ItemModel>("items");
+            var table = new ModelList();
+            foreach (var model in loaded)
+            {
+                table.Add(model);
+            }
+            return table;
         }
 
-        public static List<PlaceModel> LoadPlaces()
+        public static ModelList LoadPlaces()
         {
-            return LoadTable<PlaceModel>("places");
+            var loaded = LoadTable<PlaceModel>("places");
+            var table = new ModelList();
+            foreach (var model in loaded)
+            {
+                table.Add(model);
+            }
+            return table;
         }
 
-        public static List<OwnerModel> LoadOwners()
+        public static ModelList LoadOwners()
         {
-            return LoadTable<OwnerModel>("owners");
+            var loaded = LoadTable<OwnerModel>("owners");
+            var table = new ModelList();
+            foreach (var model in loaded)
+            {
+                table.Add(model);
+            }
+            return table;
         }
 
-        public static List<CategoryModel> LoadCategories()
+        public static ModelList LoadCategories()
         {
-            return LoadTable<CategoryModel>("categories");
+            var loaded = LoadTable<CategoryModel>("categories");
+            var table = new ModelList();
+            foreach (var model in loaded)
+            {
+                table.Add(model);
+            }
+            return table;
         }
 
         private static List<T> LoadTable<T>(string table)
@@ -43,10 +69,12 @@ namespace AutoLogistics
                 return output.ToList();
             }
         }
-        #endregion
+
+        #endregion Loading
 
         #region Saving
-        public static void SaveItem(ItemModel item)
+
+        public static void Save(ItemModel item)
         {
             SaveData("items",
                 new[]
@@ -66,10 +94,10 @@ namespace AutoLogistics
                 }, item);
         }
 
-        public static void SavePlace(PlaceModel place)
+        public static void Save(PlaceModel place)
         {
             SaveData("places",
-                new []
+                new[]
                 {
                     "place_id",
                     "name",
@@ -80,7 +108,7 @@ namespace AutoLogistics
                 }, place);
         }
 
-        public static void SaveOwner(OwnerModel owner)
+        public static void Save(OwnerModel owner)
         {
             SaveData("owners",
                 new[]
@@ -88,11 +116,10 @@ namespace AutoLogistics
                     "owner_id",
                     "name",
                     "addition",
-                    "possession"
                 }, owner);
         }
 
-        public static void SaveCategory(CategoryModel category)
+        public static void Save(CategoryModel category)
         {
             SaveData("categories",
                 new[]
@@ -102,7 +129,8 @@ namespace AutoLogistics
                     "addition"
                 }, category);
         }
-        public static void SaveData<T>(string table, string[] columns, T data)
+
+        private static void SaveData<T>(string table, string[] columns, T data)
         {
             string _columns = "";
             foreach (var column in columns)
@@ -126,6 +154,151 @@ namespace AutoLogistics
                 cnn.Execute(sql, data);
             }
         }
+
+        #endregion Saving
+
+        #region Conversion
+
+        public static class ConvertTo
+        {
+            public static ItemModel ItemModel(string model)
+            {
+                var split = model.Split('\ue001');
+#if DEBUG
+
+                Console.Write("\n\t\t\"");
+                foreach (var str in split)
+                {
+                    Console.Write(str + ", ");
+                }
+                Console.Write("\"");
+
+#endif
+                ItemModel _model = null;
+                if (split.Length != 10) return null;
+                try
+                {
+                    _model = new ItemModel
+                    {
+                        item_id = Convert.ToInt32(split[0]),
+                        name = split[1],
+                        category_id = Convert.ToInt32(split[2]),
+                        place_id = Convert.ToInt32(split[3]),
+                        description = split[4],
+                        owner_id = Convert.ToInt32(split[5]),
+                        amount = Convert.ToInt32(split[6]),
+                        unit = split[7],
+                        addition = DateTime.Parse(split[8]),
+                        possession = DateTime.Parse(split[9])
+                    };
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+
+                return _model;
+            }
+
+            public static CategoryModel CategoryModel(string model)
+            {
+                var split = model.Split('\ue001');
+#if DEBUG
+                Console.Write("\n\t\t\"");
+                foreach (var str in split)
+                {
+                    Console.Write(str + ", ");
+                }
+                Console.Write("\"");
+#endif
+                CategoryModel _model = null;
+                if (split.Length != 3) return null;
+                try
+                {
+                    _model = new CategoryModel
+                    {
+                        category_id = Convert.ToInt32(split[0]),
+                        name = split[1],
+                        addition = DateTime.Parse(split[2])
+                    };
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+
+                return _model;
+            }
+
+            public static OwnerModel OwnerModel(string model)
+            {
+                var split = model.Split('\ue001');
+#if DEBUG
+                Console.Write("\n\t\t\"");
+                foreach (var str in split)
+                {
+                    Console.Write(str + ", ");
+                }
+                Console.Write("\"");
+#endif
+                OwnerModel _model = null;
+
+                if (split.Length != 3) return null;
+                try
+                {
+                    _model = new OwnerModel
+                    {
+                        owner_id = Convert.ToInt32(split[0]),
+                        name = split[1],
+                        addition = DateTime.Parse(split[2])
+                    };
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+
+                return _model;
+            }
+
+            public static PlaceModel PlaceModel(string model)
+            {
+                var split = model.Split('\ue001');
+#if DEBUG
+                Console.Write("\n\t\t\"");
+                foreach (var str in split)
+                {
+                    Console.Write(str + ", ");
+                }
+                Console.Write("\"");
+#endif
+                PlaceModel _model = null;
+
+                if (split.Length != 6) return null;
+                try
+                {
+                    _model = new PlaceModel
+                    {
+                        place_id = Convert.ToInt32(split[0]),
+                        name = split[1],
+                        description = split[2],
+                        owner_id = Convert.ToInt32(split[3]),
+                        addition = DateTime.Parse(split[4]),
+                        possession = DateTime.Parse(split[5])
+                    };
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+
+                return _model;
+            }
+        }
+
+        #endregion Conversion
+
+        #region Search
         #endregion
     }
 }
