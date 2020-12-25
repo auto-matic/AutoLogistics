@@ -18,7 +18,7 @@
 ## Format for SUCCESS responses
 The format is checked on the client side. The server just passes the raw data through.
 ```
-Id\ue001Name\ue001Category_id\ue001Tags\ue001Place_id\ue001Description\ue001Owner_id\ue001Amount\ue001Unit\ue001Addition\ue001Possession
+Id\ue001Name\ue001Category_id\ue001Place_id\ue001Description\ue001Owner_id\ue001Amount\ue001Unit\ue001Addition\ue001Possession
 ```
 The '\ue001' character is used to separate the individual fields. The reason for choosing this specific character is, that it is part of the unicode Private-Use Characters which are perfectly suited for this application. In C# it can be decoded like this:
 ``` c#

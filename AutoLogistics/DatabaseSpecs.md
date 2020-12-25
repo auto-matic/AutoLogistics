@@ -24,7 +24,6 @@
 - owner_id
 - name
 - addition
-- possession
 
 ### Category
 - category_id
